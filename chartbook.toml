@@ -1,0 +1,84 @@
+[config]
+type = "pipeline"
+chartbook_format_version = "0.0.2"
+
+[site]
+title = "Treasury-Swap Basis"
+author = "Jeremy Bejarano"
+copyright = "2025"
+logo_path = ""
+favicon_path = ""
+
+[pipeline]
+id = "basis_treas_swap"
+pipeline_name = "Treasury-Swap Arbitrage Spreads"
+pipeline_description = "Treasury-Swap basis measuring arbitrage opportunities between Treasury yields and swap rates"
+lead_pipeline_developer = "Jeremy Bejarano"
+contributors = ["Jeremy Bejarano"]
+runs_on = "Windows/Linux/MacOS (requires Bloomberg)"
+git_repo_URL = "https://github.com/ftsfr/basis_treas_swap"
+README_file_path = "./README.md"
+
+[notebooks]
+
+[notebooks.summary_treasury_swap_basis]
+notebook_name = "summary_treasury_swap_basis"
+notebook_description = "Summary statistics and visualization of Treasury-Swap basis"
+notebook_path = "_output/_notebook_build/summary_treasury_swap_basis.ipynb"
+is_publishable = true
+
+[charts]
+
+[dataframes]
+
+[dataframes.ftsfr_treasury_swap_basis]
+dataframe_name = "ftsfr_treasury_swap_basis"
+short_description_df = "Daily Treasury-Swap arbitrage spreads for 7 tenors"
+data_sources = ["Bloomberg Treasury Yields", "Bloomberg Swap Rates"]
+data_providers = ["Bloomberg"]
+need_to_contact_provider = ["no"]
+data_on_pre_approved_list = ["No"]
+links_to_data_providers = ["https://bloomberg.com"]
+topic_tags = ["Treasury", "Swap", "basis", "arbitrage", "fixed income"]
+type_of_data_access = ["Bloomberg Terminal"]
+data_license = "Bloomberg"
+license_expiration_date = ""
+provider_contact_info = ""
+restriction_on_use = "No"
+how_is_pulled = "Pulled from Bloomberg via xbbg"
+path_to_parquet_data = "./_data/ftsfr_treasury_swap_basis.parquet"
+path_to_excel_data = ""
+date_col = "ds"
+dataframe_docs_str = """
+## Treasury-Swap Basis
+
+Treasury-Swap arbitrage spreads in basis points.
+
+### Columns
+
+| Column | Description |
+|--------|-------------|
+| unique_id | Tenor identifier (e.g., Arb_Swap_1, Arb_Swap_10) |
+| ds | Date |
+| y | Basis spread in basis points |
+
+### Methodology
+
+$$
+\\text{Basis} = (\\text{Treasury Yield} - \\text{Swap Rate}) \\times 100
+$$
+
+### Interpretation
+
+- Basis > 0: Treasuries yield more than swaps
+- Basis < 0: Swaps yield more than Treasuries
+- Basis = 0: No arbitrage opportunity
+
+### Series
+
+Arb_Swap_1, Arb_Swap_2, Arb_Swap_3, Arb_Swap_5, Arb_Swap_10, Arb_Swap_20, Arb_Swap_30
+
+### Data Source
+
+Bloomberg Treasury constant maturity yields (USGG series) and USD swap rates (USSW series)
+"""
