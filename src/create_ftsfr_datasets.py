@@ -24,11 +24,33 @@ def main():
 
     print(">> Creating ftsfr_treasury_swap_basis...")
 
+    output_path = DATA_DIR / "ftsfr_treasury_swap_basis.parquet"
+
+    # Check if a valid ftsfr file already exists
+    if output_path.exists():
+        try:
+            df_existing = pd.read_parquet(output_path)
+            if (
+                set(df_existing.columns) == {"unique_id", "ds", "y"}
+                and len(df_existing) > 0
+            ):
+                print(f"   Using existing: {output_path.name}")
+                print(f"   Records: {len(df_existing):,}")
+                print(f"   Series: {df_existing['unique_id'].nunique()}")
+                return
+        except Exception:
+            pass  # File exists but can't be read, regenerate it
+
     # Calculate basis spreads
     df_all = calc_treasury_swap_basis.calculate_treasury_swap_basis(data_dir=DATA_DIR)
 
+    # Check if we got valid data
+    if df_all.empty or len(df_all.columns) == 0:
+        print("   Warning: No data from calculation, skipping ftsfr generation")
+        return
+
     # Convert from wide to long format
-    df_stacked = df_all.stack().reset_index()
+    df_stacked = df_all.stack(future_stack=True).reset_index()
     df_stacked.columns = ["ds", "unique_id", "y"]
 
     # Reorder columns to FTSFR standard: unique_id, ds, y
@@ -40,7 +62,6 @@ def main():
     df_stacked = df_stacked.sort_values(by=["unique_id", "ds"]).reset_index(drop=True)
 
     # Save
-    output_path = DATA_DIR / "ftsfr_treasury_swap_basis.parquet"
     df_stacked.to_parquet(output_path, index=False)
     print(f"   Saved: {output_path.name}")
     print(f"   Records: {len(df_stacked):,}")

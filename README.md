@@ -47,3 +47,23 @@ Results are in basis points.
 1. Ensure Bloomberg Terminal is running
 2. Install dependencies: `pip install -r requirements.txt`
 3. Run pipeline: `doit`
+
+## Academic References
+
+### Primary Papers
+
+- **Du, Hebert, and Li (2023)** - "Intermediary Balance Sheets and the Treasury Yield Curve"
+  - Documents regime change in Treasury-swap spreads post-GFC
+
+- **Jermann (2020)** - "Negative Swap Spreads and Limited Arbitrage"
+  - Review of Financial Studies
+  - Explains negative swap spreads since 2008
+
+- **Siriwardane, Sunderam, and Wallen** - "Segmented Arbitrage"
+  - Provides data and analysis of Treasury-swap spreads
+
+### Key Findings
+
+- 30-year swap spreads have been negative since October 2008
+- Regulatory changes increased cost of Treasury holdings
+- Balance sheet constraints limit arbitrage

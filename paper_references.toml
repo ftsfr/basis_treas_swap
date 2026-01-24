@@ -1,0 +1,39 @@
+# Paper References for Treasury-Swap Basis Module
+
+[Du2023]
+title = "Intermediary Balance Sheets and the Treasury Yield Curve"
+authors = "Wenxin Du, Benjamin Hebert, and Wenhao Li"
+year = 2023
+description = "The paper examines the regime change in the Treasury market following the Global Financial Crisis where dealers shifted from net short to net long positions."
+empirical_facts = [
+    "Pre-GFC, primary dealers maintained a net short position in Treasury bonds, resulting in positive swap spreads.",
+    "Post-GFC, primary dealers switched to a net long position, leading to negative swap spreads.",
+    "The regime shift caused co-movement among swap spreads, dealer positions, and CIP violations.",
+]
+lessons_learned = [
+    "Monetary and regulatory policies have regime-dependent effects on the Treasury market.",
+    "The supply of Treasury bonds can significantly influence market regimes and swap spreads.",
+]
+
+[Jermann2020]
+title = "Negative Swap Spreads and Limited Arbitrage"
+authors = "Urban J. Jermann"
+year = 2020
+journal = "Review of Financial Studies"
+description = "The paper addresses the phenomenon of negative swap spreads, where fixed rates for interest rate swaps have been below Treasury rates since 2008."
+empirical_facts = [
+    "Since October 2008, 30-year interest rate swap spreads have been negative.",
+    "Empirical evidence shows a negative relation between term spreads and swap spreads.",
+    "Swap spreads declined sharply in 2015, coinciding with banks' disclosure of supplementary leverage ratios.",
+]
+lessons_learned = [
+    "Negative swap spreads can occur naturally in the presence of market frictions that limit arbitrage.",
+    "Regulatory changes, such as increased capital requirements, have made it more costly for banks to hold Treasuries.",
+]
+
+[Siriwardane2021]
+title = "Segmented Arbitrage"
+authors = "Emil Siriwardane, Adi Sunderam, and Jonathan Wallen"
+year = 2021
+description = "The paper provides data on Treasury-swap spreads as part of a broader analysis of arbitrage spreads."
+data_sources = ["Bloomberg Treasury yields", "Interest rate swap data"]

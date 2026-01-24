@@ -24,7 +24,7 @@ README_file_path = "./README.md"
 [notebooks.summary_treasury_swap_basis]
 notebook_name = "summary_treasury_swap_basis"
 notebook_description = "Summary statistics and visualization of Treasury-Swap basis"
-notebook_path = "_output/_notebook_build/summary_treasury_swap_basis.ipynb"
+notebook_path = "_output/summary_treasury_swap_basis.ipynb"
 is_publishable = true
 
 [charts]
