@@ -7,9 +7,6 @@ from settings import config
 import pandas as pd
 import os
 from pandas.tseries.offsets import DateOffset
-import matplotlib
-
-matplotlib.use("Agg")
 
 output_dir = Path(config("OUTPUT_DIR"))
 
@@ -26,7 +23,7 @@ def test_plot_figure():
         col.append(f"Arb_Swap_{year}")
     arb_df = pd.DataFrame.from_dict(arb_df, orient="index", columns=col)
 
-    file = os.path.join(output_dir, "dummy_plot.png")
+    file = os.path.join(output_dir, "dummy_plot.html")
     plot_figure(arb_df, file)
 
     assert os.path.exists(file)
@@ -48,12 +45,12 @@ def test_plot_supplementary():
     arb_df = pd.DataFrame.from_dict(arb_df, orient="index", columns=col)
 
     # running plot_supplementary
-    file = os.path.join(output_dir, "replication_figure.png")
+    file = os.path.join(output_dir, "replication_figure.html")
     plot_supplementary(arb_df, file)
 
     # checking all the files generated
     for year in [1, 20, 2, 30, 3, 5, 10]:
-        file = os.path.join(output_dir, f"replication_figure{year}.png")
+        file = os.path.join(output_dir, f"replication_figure{year}.html")
         assert os.path.exists(file)
 
 
@@ -62,6 +59,6 @@ def test_plot_main():
     Note: It only passes/works when running with a bloomberg-enabled machine.
     """
     plot_main()
-    file_r = os.path.join(output_dir, "replicated_swap_spread_arb_figure.png")
-    file_u = os.path.join(output_dir, "updated_swap_spread_arb_figure.png")
+    file_r = os.path.join(output_dir, "replicated_swap_spread_arb_figure.html")
+    file_u = os.path.join(output_dir, "updated_swap_spread_arb_figure.html")
     assert os.path.exists(file_r) and os.path.exists(file_u)

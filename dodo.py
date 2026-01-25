@@ -133,6 +133,24 @@ def task_format():
     }
 
 
+def task_generate_charts():
+    """Generate charts for Treasury-Swap basis."""
+    return {
+        "actions": ["python src/plot_figure.py"],
+        "file_dep": [
+            "src/plot_figure.py",
+            "src/supplementary.py",
+            DATA_DIR / "swap_spreads.parquet",
+        ],
+        "targets": [
+            OUTPUT_DIR / "replicated_swap_spread_arb_figure.html",
+            OUTPUT_DIR / "updated_swap_spread_arb_figure.html",
+        ],
+        "verbosity": 2,
+        "task_dep": ["calc"],
+    }
+
+
 def task_run_notebooks():
     """Execute summary notebook and convert to HTML."""
     notebook_py = BASE_DIR / "src" / "summary_treasury_swap_basis_ipynb.py"
@@ -169,8 +187,10 @@ def task_generate_pipeline_site():
         "file_dep": [
             "chartbook.toml",
             OUTPUT_DIR / "summary_treasury_swap_basis.ipynb",
+            OUTPUT_DIR / "replicated_swap_spread_arb_figure.html",
+            OUTPUT_DIR / "updated_swap_spread_arb_figure.html",
         ],
         "targets": [BASE_DIR / "docs" / "index.html"],
         "verbosity": 2,
-        "task_dep": ["run_notebooks"],
+        "task_dep": ["run_notebooks", "generate_charts"],
     }

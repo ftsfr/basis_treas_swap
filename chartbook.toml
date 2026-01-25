@@ -29,6 +29,24 @@ is_publishable = true
 
 [charts]
 
+[charts.treasury_swap_basis]
+chart_name = "Treasury-Swap Basis"
+short_description_chart = "Time series of Treasury-Swap arbitrage spreads by tenor"
+dataframe_id = "ftsfr_treasury_swap_basis"
+path_to_html_chart = "./_output/replicated_swap_spread_arb_figure.html"
+topic_tags = ["Treasury", "Swap", "arbitrage", "basis"]
+chart_docs_str = """
+## Treasury-Swap Arbitrage Spreads
+
+Time series plot showing the Treasury-Swap arbitrage spreads across different maturities (1Y, 2Y, 3Y, 5Y, 10Y, 20Y, 30Y).
+
+### Interpretation
+
+- Positive spreads indicate Treasuries yield more than swaps
+- Negative spreads indicate swaps yield more than Treasuries
+- Spread dynamics reflect funding conditions and balance sheet constraints
+"""
+
 [dataframes]
 
 [dataframes.ftsfr_treasury_swap_basis]
