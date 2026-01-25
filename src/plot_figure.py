@@ -58,7 +58,7 @@ def plot_figure(
     plt.title("Treasury-Swap")
     plt.xlabel("Dates")
     plt.ylabel("Arbitrage Spread (bps)")
-    plt.legend(loc="upper center", bbox_to_anchor=(0.5, -0.15), ncol=5)
+    plt.legend()
     plt.grid(axis="y")
     plt.savefig(save_path, bbox_inches="tight")
     plt.close()
@@ -107,7 +107,7 @@ def plot_supplementary(
         plt.title("Treasury and Swap Rates")
         plt.xlabel("Dates")
         plt.ylabel("Log Rates")
-        plt.legend(loc="upper center", bbox_to_anchor=(0.5, -0.15), ncol=5)
+        plt.legend()
         plt.grid(axis="y")
 
         year_path = base_path.with_name(f"{base_path.stem}{year}{base_path.suffix}")
